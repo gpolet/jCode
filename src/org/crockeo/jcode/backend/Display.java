@@ -2,7 +2,8 @@ package org.crockeo.jcode.backend;
 
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
-import java.awt.Frame;
+
+import javax.swing.JFrame;
 
 /*
  * Class: Display
@@ -12,7 +13,7 @@ import java.awt.Frame;
  */
 
 public class Display {
-	private static Frame frame;
+	private static JFrame frame;
 	private static BufferedImage canvas;
 	
 	private static boolean created = false;
@@ -21,9 +22,9 @@ public class Display {
 	public static void create(int width, int height,
 							  boolean fullscreen,
 							  String title) {
-		frame = new Frame();
+		frame = new JFrame();
 		if (fullscreen) {
-			frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			frame.setUndecorated(true);
 		} else {
 			frame.setSize(640, 480);
@@ -44,8 +45,13 @@ public class Display {
 		created = false;
 	}
 	
+	// Flipping the display
+	public static void flip() {
+		frame.getGraphics().drawImage(canvas, 0, 0, frame.getWidth(), frame.getHeight(), null);
+	}
+	
 	// Accessors
-	public static Frame getFrame() { return frame; }
+	public static JFrame getFrame() { return frame; }
 	public static BufferedImage getCanvas() { return canvas; }
 	public static Graphics getGraphics() { return getCanvas().getGraphics(); }
 	public static boolean isCreated() { return created; }

@@ -32,6 +32,9 @@ public class Application {
 					   cfg.title);
 	}
 	
+	// Starting/Stopping
+	public void start() { sh.start(); }
+	public void stop() { sh.stop(); }
 	
 	// Accessors
 	public ApplicationConfig getConfig() { return cfg; }

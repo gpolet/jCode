@@ -1,5 +1,8 @@
 package org.crockeo.jcode.utils.state;
 
+import org.crockeo.jcode.graphics.Graphics;
+import org.crockeo.jcode.backend.Display;
+
 import java.util.ArrayList;
 
 /*
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 public abstract class StateHandler {
 	private ArrayList<State> states;
 	private State currState;
+	private boolean running;
 	
 	public StateHandler() {
 		states = new ArrayList<>();
@@ -19,6 +23,8 @@ public abstract class StateHandler {
 		
 		if (currState == null)
 			currState = states.get(0);
+		
+		running = false;
 	}
 	
 	// Adding states
@@ -54,5 +60,33 @@ public abstract class StateHandler {
 			if (states.get(i).getId() == id)
 				return i;
 		return -1;
+	}
+	
+	
+	// Loop functions
+	public void start() {
+		running = true;
+		loop();
+	}
+	
+	public void stop() {
+		running = false;
+	}
+	
+	private void loop() {
+		long lastTime, currTime;
+		
+		lastTime = System.currentTimeMillis();
+		while (running) {
+			currTime = System.currentTimeMillis();
+			
+			currState.tick(this, (currTime - lastTime) / 1000.0f);
+			currState.draw(this, Graphics.instance());
+			
+			if (Display.isCreated())
+				Display.flip();
+			
+			lastTime = currTime;
+		}
 	}
 }

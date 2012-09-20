@@ -8,6 +8,7 @@ package org.crockeo.jcode;
  */
 
 public class ApplicationConfig {
+	// Data
 	public int displayWidth = 640;
 	public int displayHeight = 480;
 	public boolean fullscreen = false;

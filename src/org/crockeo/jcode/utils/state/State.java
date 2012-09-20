@@ -1,5 +1,7 @@
 package org.crockeo.jcode.utils.state;
 
+import org.crockeo.jcode.graphics.Graphics;
+
 /*
  * Class: State
  * 
@@ -14,7 +16,7 @@ public interface State {
 	public void exit(StateHandler sh); // called when exiting the state
 	
 	public void tick(StateHandler sh, float delta); // Called every tick
-	public void draw(StateHandler sh/*, Graphics g*/); // Called every draw tick
+	public void draw(StateHandler sh, Graphics g); // Called every draw tick
 	
 	public int getId(); // The state's id, 'cause, y'know, that's helpful.
 }
