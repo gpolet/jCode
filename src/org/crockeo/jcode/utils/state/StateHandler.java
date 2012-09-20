@@ -80,11 +80,14 @@ public abstract class StateHandler {
 		while (running) {
 			currTime = System.currentTimeMillis();
 			
+			// Ticking
 			currState.tick(this, (currTime - lastTime) / 1000.0f);
+			
+			// Drawing			
 			currState.draw(this, Graphics.instance());
 			
-			if (Display.isCreated())
-				Display.flip();
+			// Flipping the display
+			Display.flip();
 			
 			lastTime = currTime;
 		}
