@@ -36,9 +36,8 @@ public class BasicTest {
 		}
 		
 		public void draw(StateHandler sh, Graphics g) {
-			for (int i: g.getRGB())
-				System.out.print(i + ", ");
-			System.out.print("\n");
+			System.out.println("Red: " + g.getRed() + ", Green: " + g.getGreen() + ", Blue: " + g.getBlue());
+			
 			
 			g.setColor(0, 0, 0);
 			g.fillRect(50, 50, 50, 50);
